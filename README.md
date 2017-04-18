@@ -17,7 +17,7 @@ import it into your work (I reccomend to change the name to a simpler name, like
 import calculator
 ```
 
-Then you can use the functions in the file. For example, lets say that we have the weighted game (4;1,2,2,3), where 
+Then you can use the functions in the file. For example, lets say that we have the weighted game [4;1,2,2,3], where 
 4 is the quota of the game, and the rest of the vector is the weight of each player _i_ (this is, weight(P1) = 1, 
 weight(P2) = 2, weight(P3) = 2 and weight(P4) = 3), then we can use the calculator like this:
 
