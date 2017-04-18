@@ -8,10 +8,15 @@ Power index calculator, for the:
 * Deegan-Packel power index 
 * Johnston power index.
 
-## Usage
+## Installation
 
-This is **NOT** a package, you don't need to install anything, just download the **[power index calculator.py](../master/power_index_calculator.py)** file, and then
-import it into your work (I reccomend to change the name to a simpler name, like calculator) like this:
+In order to install the power index calculator, you can just do the pip install, like this:
+
+```
+sudo pip install Power-indices-calculator
+```
+
+## Usage
 
 ```python
 import calculator
