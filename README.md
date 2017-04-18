@@ -13,7 +13,7 @@ Power index calculator, for the:
 In order to install the power index calculator, you can just do the pip install, like this:
 
 ```
-sudo pip install Power-indices-calculator
+sudo pip install power_index_calculator
 ```
 
 ## Usage
