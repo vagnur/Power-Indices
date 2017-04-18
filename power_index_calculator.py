@@ -350,7 +350,7 @@ def name_players(weight):
     counter = 0
     for letter in range(ord('a'),ord('z')+1):
         player_name = chr(letter)
-        players[player_name] = weight[a]
+        players[player_name] = weight[counter]
         counter += 1
         if counter==len(weight):
             return collections.OrderedDict(sorted(players.items()))
