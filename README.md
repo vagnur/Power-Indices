@@ -1,6 +1,6 @@
 # Power-Indices
 
-Calculator for the:
+Power index calculator, for the:
 
 * Banzhaf power index.
 * Shapley-Shubik power index.
