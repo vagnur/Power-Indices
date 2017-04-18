@@ -18,8 +18,10 @@ sudo pip install Power-indices-calculator
 
 ## Usage
 
+First, you need to import the functions, like this
+
 ```python
-import calculator
+import power_index_calculator as calculator
 ```
 
 Then you can use the functions in the file. For example, lets say that we have the weighted game [4;1,2,2,3], where 
