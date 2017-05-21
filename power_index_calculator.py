@@ -7,13 +7,14 @@ import collections
 BANZHAF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def banzhaf(weight, quota):
     """
     Calculator for the banzhaf index of each player.
 
     Parameters
     ----------
-    weight  : list 
+    weight  : list
                 Vector with the weights of each player.
     quota   : int
                 Necesary weight to win the game.
@@ -21,29 +22,31 @@ def banzhaf(weight, quota):
     Returns
     -------
     list
-        Vector of the banzhaf power for each player, where banzhaf_index[i] is 
+        Vector of the banzhaf power for each player, where banzhaf_index[i] is
         the banzhaf power for the player i.
 
     """
     players = name_players(weight)
-    coalitions = winning_coalitions(players,quota)
+    coalitions = winning_coalitions(players, quota)
 
     banzhaf_power = []
     for player in players:
         player_banzhaf = 0.0
         for coalition in coalitions:
-            if is_critical(player,players,coalition,quota):
+            if is_critical(player, players, coalition, quota):
                 player_banzhaf += 1
         banzhaf_power.append(player_banzhaf)
 
     total_power = float(sum(banzhaf_power))
-    banzhaf_index = map(lambda x: round((x / total_power),3), banzhaf_power)
+    banzhaf_index = map(lambda x: round((x / total_power), 3), banzhaf_power)
 
     return banzhaf_index
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 SHAPLEY
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def shapley(weight, quota):
     """
@@ -51,7 +54,7 @@ def shapley(weight, quota):
 
     Parameters
     ----------
-    weight  : list 
+    weight  : list
                 Vector with the weights of each player.
     quota   : int
                 Necesary weight to win the game.
@@ -59,24 +62,24 @@ def shapley(weight, quota):
     Returns
     -------
     list
-        Vector of the shapley-shubik power for each player, where shapley_index[i] is 
-        the shapley-shubik power for the player i.
+        Vector of the shapley-shubik power for each player,
+        where shapley_index[i] is the shapley-shubik power for the player i.
 
     """
     number_of_players = len(weight)
     players = name_players(weight)
-    coalitions = winning_coalitions(players,quota)
+    coalitions = winning_coalitions(players, quota)
 
     SSI = []
     for player in players:
         player_ssi = 0.0
         for coalition in coalitions:
-            if is_critical(player,players,coalition,quota):
-                player_ssi += float((factorial(number_of_players-len(coalition))*factorial(len(coalition)-1)))/factorial(number_of_players)
+            if is_critical(player, players, coalition, quota):
+                player_ssi += float((factorial(number_of_players - len(coalition)) * factorial(len(coalition) - 1))) / factorial(number_of_players)
         SSI.append(player_ssi)
     total_ssi = sum(SSI)
 
-    shapley_index = map(lambda x: round((x / total_ssi),3), SSI)
+    shapley_index = map(lambda x: round((x / total_ssi), 3), SSI)
 
     return shapley_index
 
@@ -85,13 +88,14 @@ def shapley(weight, quota):
 HOLLER-PACKEL
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 def holler_packel(weight, quota):
     """
     Calculator for the holler-packel index of each player.
 
     Parameters
     ----------
-    weight  : list 
+    weight  : list
                 Vector with the weights of each player.
     quota   : int
                 Necesary weight to win the game.
@@ -99,29 +103,32 @@ def holler_packel(weight, quota):
     Returns
     -------
     list
-        Vector of the holler-packel power for each player, where holler_index[i] is 
-        the holler-packel power for the player i.
+        Vector of the holler-packel power for each player,
+        where holler_index[i] is the holler-packel power for the player i.
 
     """
     players = name_players(weight)
-    minimal_coalitions = list(winning_minimal_coalitions(players,quota))
+    minimal_coalitions = list(winning_minimal_coalitions(players, quota))
 
     minimal_aparition = []
     for player in players:
         player_in_minimal = 0.0
         for coalition in minimal_coalitions:
-            if is_critical(player,players,coalition,quota):
+            if is_critical(player, players, coalition, quota):
                 player_in_minimal += 1.0
         minimal_aparition.append(player_in_minimal)
     total_minimal_aparition = sum(minimal_aparition)
 
-    holler_index = map(lambda x: round((x / total_minimal_aparition),3), minimal_aparition)
+    holler_index = map(lambda x: round((x / total_minimal_aparition), 3),
+                       minimal_aparition)
 
     return holler_index
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 DEEGAN-PACKEL
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def deegan_packel(weight, quota):
     """
@@ -129,7 +136,7 @@ def deegan_packel(weight, quota):
 
     Parameters
     ----------
-    weight  : list 
+    weight  : list
                 Vector with the weights of each player.
     quota   : int
                 Necesary weight to win the game.
@@ -137,12 +144,12 @@ def deegan_packel(weight, quota):
     Returns
     -------
     list
-        Vector of the deegan-packel power for each player, where deegan_index[i] is 
-        the deegan-packel power for the player i.
+        Vector of the deegan-packel power for each player,
+        where deegan_index[i] is the deegan-packel power for the player i.
 
     """
     players = name_players(weight)
-    minimal_coalitions = list(winning_minimal_coalitions(players,quota))
+    minimal_coalitions = list(winning_minimal_coalitions(players, quota))
 
     TDPP = []
     for player in players:
@@ -153,13 +160,15 @@ def deegan_packel(weight, quota):
         TDPP.append(player_tdpp)
     total_tdpp = sum(TDPP)
 
-    deegan_index = map(lambda x: round((x / total_tdpp),3), TDPP)
+    deegan_index = map(lambda x: round((x / total_tdpp), 3), TDPP)
 
     return deegan_index
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 JOHNSTON
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def johnston(weight, quota):
     """
@@ -167,7 +176,7 @@ def johnston(weight, quota):
 
     Parameters
     ----------
-    weight  : list 
+    weight  : list
                 Vector with the weights of each player.
     quota   : int
                 Necesary weight to win the game.
@@ -175,12 +184,12 @@ def johnston(weight, quota):
     Returns
     -------
     list
-        Vector of the johnston power for each player, where johnston_index[i] is 
-        the johnston power for the player i.
+        Vector of the johnston power for each player,
+        where johnston_index[i] is the johnston power for the player i.
 
     """
     players = name_players(weight)
-    coalitions = winning_coalitions(players,quota)
+    coalitions = winning_coalitions(players, quota)
 
     deflectors = []
     for coalition in coalitions:
@@ -202,14 +211,16 @@ def johnston(weight, quota):
         TJP.append(player_tjp)
     total_tjp = sum(TJP)
 
-    johnston_index = map(lambda x: round((x / total_tjp),3), TJP)
+    johnston_index = map(lambda x: round((x / total_tjp), 3), TJP)
 
     return johnston_index
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 COMMON
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 def _winning_coalitions(players, quota):
     """
@@ -242,7 +253,8 @@ def _winning_coalitions(players, quota):
             if sum([votes for (name, votes) in coalition]) >= quota:
                 yield coalition
 
-def winning_coalitions(players,quota):
+
+def winning_coalitions(players, quota):
     """
     List the winning coalitions of a given game.
 
@@ -264,13 +276,14 @@ def winning_coalitions(players,quota):
     coalitions = _winning_coalitions(players, quota)
     return sorted([sorted([name for (name, votes) in c]) for c in coalitions])
 
-def number_players_search(weights,players,quota):
+
+def number_players_search(weights, players, quota):
     """
     Count the quantity of players before they pass the quota.
 
     Parameters
     ----------
-    weight  : list 
+    weight  : list
                 Vector with the weights of each player.
     players : dictionary
                 Name of the the players and their weights.
@@ -291,7 +304,8 @@ def number_players_search(weights,players,quota):
         if total_power >= quota:
             return number_players
 
-def winning_minimal_coalitions(players,quota):
+
+def winning_minimal_coalitions(players, quota):
     """
     List the minimal coalitions that win the game.
 
@@ -307,14 +321,18 @@ def winning_minimal_coalitions(players,quota):
         A minimal coalition.
 
     """
-    min_to_max_weight = sorted(players.iterkeys(), key = lambda i: players[i])
-    max_to_min_weight = sorted(players.iterkeys(), key = lambda i: players[i], reverse = True)
-    
-    min_players = number_players_search(max_to_min_weight,players,quota)
-    max_players = number_players_search(min_to_max_weight,players,quota)
+    min_to_max_weight = [i[0] for i in sorted(players.items(),
+                                              key=itemgetter(1))]
 
-    for i in range(min_players,max_players + 1):
-        potencial_coalitions = combinations(players,i)
+    max_to_min_weight = [i[0] for i in  sorted(players.items(),
+                                               key=itemgetter(1),
+                                               reverse=True)]
+
+    min_players = number_players_search(max_to_min_weight, players, quota)
+    max_players = number_players_search(min_to_max_weight, players, quota)
+
+    for i in range(min_players, max_players + 1):
+        potencial_coalitions = combinations(players, i)
         for coalition in potencial_coalitions:
             total_power = 0
             for player in coalition:
@@ -330,38 +348,40 @@ def winning_minimal_coalitions(players,quota):
                 if flag:
                     yield coalition
 
+
 def name_players(weight):
     """
     Name the players of the game.
 
     Parameters
     ----------
-    weight  : list 
+    weight  : list
                 Vector with the weights of each player.
 
     Returns
     -------
     dictionary
-        A name of each player with his power in a dictionary. The 
+        A name of each player with his power in a dictionary. The
         weight if the player[i] = weight[i].
 
     """
     players = {}
     counter = 0
-    for letter in range(ord('a'),ord('z')+1):
+    for letter in range(ord('a'), ord('z')+1):
         player_name = chr(letter)
         players[player_name] = weight[counter]
         counter += 1
-        if counter==len(weight):
+        if counter == len(weight):
             return collections.OrderedDict(sorted(players.items()))
 
-def is_critical(player,players,coalition,quota):
+
+def is_critical(player, players, coalition, quota):
     """
     Criticality analyzer for a player
 
     Parameters
     ----------
-    player    : string 
+    player    : string
                     Name of the player that is gonna be analyzed.
     players   : dictionary
                     Name of the the players and their weights.
