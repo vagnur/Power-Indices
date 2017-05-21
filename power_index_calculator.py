@@ -321,12 +321,12 @@ def winning_minimal_coalitions(players, quota):
         A minimal coalition.
 
     """
-    min_to_max_weight = sorted(players.iterkeys(),
-                               key=lambda i: players[i])
+    min_to_max_weight = [i[0] for i in sorted(players.items(),
+                                              key=itemgetter(1))]
 
-    max_to_min_weight = sorted(players.iterkeys(),
-                               key=lambda i: players[i],
-                               reverse=True)
+    max_to_min_weight = [i[0] for i in  sorted(players.items(),
+                                               key=itemgetter(1),
+                                               reverse=True)]
 
     min_players = number_players_search(max_to_min_weight, players, quota)
     max_players = number_players_search(min_to_max_weight, players, quota)
