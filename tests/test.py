@@ -4,11 +4,16 @@ import power_index_calculator as calculator
 
 class TestPowerIndices(unittest.TestCase):
     """
-    TODO
+    We test all the power indices against the same
+    game and quota.
+    TODO:
+        Tests with lower quotas
+        Tests with high quotas
+        All the players with the same weight
     """
     def test_banzhaf(self):
         """
-        TODO
+        Simple banzhaf test
         """
         g1 = [3, 3, 5, 5, 7, 16, 47, 9, 11, 18, 11, 5, 9, 3, 3]
 
@@ -23,7 +28,7 @@ class TestPowerIndices(unittest.TestCase):
 
     def test_deegan_packel(self):
         """
-        TODO
+        Simple Deegan Packel test
         """
         g1 = [3, 3, 5, 5, 7, 16, 47, 9, 11, 18, 11, 5, 9, 3, 3]
 
@@ -38,7 +43,7 @@ class TestPowerIndices(unittest.TestCase):
 
     def test_shapley(self):
         """
-        TODO
+        Simple Shapley Shubik test
         """
         g1 = [3, 3, 5, 5, 7, 16, 47, 9, 11, 18, 11, 5, 9, 3, 3]
 
@@ -49,6 +54,21 @@ class TestPowerIndices(unittest.TestCase):
              0.051, 0.016, 0.016]
 
         res = list(calculator.shapley(g1, q1))
+        self.assertEqual(res, r)
+
+    def test_holler_packel(self):
+        """
+        Simple Holler Packel test
+        """
+        g1 = [3, 3, 5, 5, 7, 16, 47, 9, 11, 18, 11, 5, 9, 3, 3]
+
+        q1 = 89
+
+        r = [0.062, 0.062, 0.065, 0.065, 0.065, 0.058,
+             0.12, 0.065, 0.064, 0.053, 0.064, 0.065,
+             0.065, 0.062, 0.062]
+
+        res = list(calculator.holler_packel(g1, q1))
         self.assertEqual(res, r)
 
 
