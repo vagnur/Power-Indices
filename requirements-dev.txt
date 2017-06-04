@@ -1,0 +1,2 @@
+coverage==4.4.1
+flake8==3.3.0
